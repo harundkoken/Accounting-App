@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<title>Muhasebe</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+
+<body>
+
+<div class="w3-container w3-blue w3-card">
+    <h1>ARI PLASTİK MUHASEBE</h1>
+</div>
+
+<div class="tab">
+
+    <form class="form">
+        <p class="x1">
+            <label>Ürün: </label>
+            <select id="urun">
+                <option value="Muz">Muz</option>
+                <option value="Çilek">Çilek</option>
+                <option value="M.Çilek">M.Çilek</option>
+            </select>
+        <p class="x2">
+            <label>Adet: </label>
+            <input class="w3-input" type="text" id="adet"></p>
+        <p class="x3">
+            <label>Fiyat: </label>
+            <input class="w3-input" type="text" id="fiyat"></p>
+        <p class="x4">
+            <label>Alıcı: </label>
+            <input class="w3-input" type="text" id="alici"></p>
+        <p class="x6">
+            <label>Tarih: </label>
+            <input class="w3-input" id="tarih" type="text" placeholder="dd/mm/yyyy" required>
+        </p>
+        <P class="x5">
+            <button type="button" class="w3-btn w3-blue" id="save">Kaydet</button>
+    </form>
+    <br>
+
+</div>
+<div class="table">
+    <table class="w3-table-all" id="myTable">
+        <thead>
+        <tr class="w3-blue">
+            <th>Tarih</th>
+            <th>Ürün</th>
+            <th>Adet</th>
+            <th>Fiyat</th>
+            <th>Alıcı</th>
+            <th>Ücret</th>
+            <th>Sil</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $('#save').on('click', function () {
+        var urun = $('#urun').val();
+        var adet = $('#adet').val();
+        var fiyat = $('#fiyat').val();
+        var alici = $('#alici').val();
+        var ucret = $('#ucret').val();
+        var tarih = $('#tarih').val();
+        if (urun != "" && adet != "" && fiyat != "" && alici != "" && tarih != "") {
+            $('#myTable tbody').append('<tr style="text-align: center" class="child"><td>' + tarih + '</td><td>' + urun + '</td><td>' + adet + '</td><td>' + fiyat + '<td>' + alici + '</td></td><td>' + adet * fiyat + "₺" + '</td><td><a href="javascript:void(0);" style="color: red"class="remCF1 btn btn-small btn-danger">Sil</a></td></tr>');
+        }
+    });
+    $(document).on('click', '.remCF1', function () {
+        $(this).parent().parent().remove();
+        $('#myTable tbody tr').each(function (i) {
+            $($(this).find('td')[0]).html(i + 1);
+        });
+    });
+</script>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyC2W0ZQNDQbcJrhi9jkOQC4h-ZqAKn1hWc",
+        authDomain: "muhasebe-8abea.firebaseapp.com",
+        databaseURL: "https://muhasebe-8abea-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "muhasebe-8abea",
+        storageBucket: "muhasebe-8abea.appspot.com",
+        messagingSenderId: "321395305665",
+        appId: "1:321395305665:web:7d5d494000646bea52f840"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import {getDatabase, ref, set, child, update, remove}
+    from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+    const db = getDatabase();
+
+    var Urun1=document.getElementById("urun");
+    var Adet1=document.getElementById("adet");
+    var Fiyat1=document.getElementById("fiyat");
+    var Alici1=document.getElementById("alici");
+    var Tarih1=document.getElementById("tarih");
+
+    var insBtn = document.getElementById("save");
+    var selBtn = document.getElementById("SelBtn");
+    var upBtn = document.getElementById("UpBtn");
+    var delBtn = document.getElementById("DelBtn");
+
+    function InsertData(){
+        set(ref(db,"TheStudents/"+Adet1.value),{
+            NameOfStd: Urun1.value,
+            RollNo: Adet1.value,
+            Section: Fiyat1.value,
+            Gender: Alici1.value,
+            Tarih: Tarih1.value,
+
+        })
+        .then(()=>{
+            alert("successfully");
+        })
+        .catch((error)=>{
+            alert("alert"+error);
+        });
+    }
+
+    insBtn.addEventListener('click',InsertData);
+</script>
+
+</body>
+</html>
