@@ -47,8 +47,8 @@
         <p class="x4">
             <label>Alıcı: </label>
             <input class="w3-input" type="text" id="alici"></p>
-        <P class="x5">
-            <button type="button" class="btn btn-primary" id="save">Kaydet</button>
+        <p class="x5">
+            <button type="button" class="btn btn-primary" id="save">Kaydet</button></p>
 
     </form>
     <br>
@@ -91,13 +91,15 @@
         let td6 = document.createElement('td');
         let td7 = document.createElement('td');
 
-        td1.innerHTML = ++idd;
-        td2.innerHTML = tarrih;
-        td3.innerHTML = urrun;
-        td4.innerHTML = addet;
-        td5.innerHTML = fiyyat+"₺";
-        td6.innerHTML = allici;
-        td7.innerHTML = addet*fiyyat+"₺";
+        if (urun != "" && ID != "" && tarih != "" && adet != "" && fiyat != "" && alici != "") {
+            td1.innerHTML = ++idd;
+            td2.innerHTML = tarrih;
+            td3.innerHTML = urrun;
+            td4.innerHTML = addet;
+            td5.innerHTML = fiyyat + "₺";
+            td6.innerHTML = allici;
+            td7.innerHTML = addet * fiyyat + "₺";
+        }
 
         trow.appendChild(td1);
         trow.appendChild(td2);
@@ -160,28 +162,6 @@
 
 </script>
 
-<script type="text/javascript">
-    $('#save').on('click', function () {
-        var urun = $('#urun').val();
-        var ID = $('#ID').val();
-        var tarih = $('#tarih').val();
-        var adet = $('#adet').val();
-        var fiyat = $('#fiyat').val();
-        var alici = $('#alici').val();
-        var ucret = $('#ucret').val();
-
-
-        if (urun != "" && ID != "" && tarih != "" && adet != "" && fiyat != "" && alici != "") {
-            $('#del tbody').append('<tr class="child"><td>' + ID + '</td><td>' + tarih + '</td><td>' + urun + '</td><td>' + adet + '</td><td>' + fiyat + "₺" + '</td><td>' + alici + '</td><td>' + adet * fiyat + "₺" + '</td><td><a id="del" style="color: white" class="remCF1 btn btn-small btn-danger">Sil</a></td></tr>');
-        }
-    });
-    $(document).on('click', '.remCF1', function () {
-        $(this).parent().parent().remove();
-        $('#del tbody tr').each(function (i) {
-            $($(this).find('td')[0]).html(i + 1);
-        });
-    });
-</script>
 
 <script type="module">
 
