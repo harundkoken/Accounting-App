@@ -1,36 +1,64 @@
-<html>
-<head>
-    <title>Muhasebe Giriş</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles1.css">
-    <script type="module" src="form.js"></script>
-    <meta charset="UTF-8">
-</head>
-<body>
-
-<div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-</div>
-
-<div class="hrn">
-    <div class="center-box" id="login-div">
-        <h3>Giriş</h3>
-
-        <label for="username">Kullanıcı Adı</label>
-        <input type="text" id="username" class="text-field" name="username" placeholder="username" required/><br>
-
-        <label for="password">Şifre</label>
-        <input type="password" id="password" class="text-field" name="password" placeholder="password" required/><br>
-
-        <button id="login-btn" class="btn-style" accesskey="Enter" style="color: #080710">Gİriş Yap</button>
-        <br>
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <!-- Avatar -->
+        <li class="nav-item dropdown">
+          <a
+                  class="nav-link dropdown-toggle d-flex align-items-center"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+          >
+            <img
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+                    class="rounded-circle"
+                    height="22"
+                    alt="Portrait of a Woman"
+                    loading="lazy"
+            />
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="public/urunler.html">Sipariş Ekle</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Müşteri Oluştur</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Çıkış</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
-
-</div>
-
-</body>
+  </nav>
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+  </body>
 </html>
