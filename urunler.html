@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 
 
 </head>
@@ -48,11 +48,12 @@
             <label>Alıcı: </label>
             <input class="w3-input" type="text" id="alici"></p>
         <p class="x5">
-            <button type="button" class="btn btn-primary" id="save">Kaydet</button>
-        </p>
+            <button type="button" class="btn btn-primary" id="save">Kaydet</button></p>
 
     </form>
     <br>
+
+
 
 
     <table class="table table-dark" style="text-align: center">
@@ -79,7 +80,7 @@
     var idd = 0;
     var tbody = document.getElementById('tbody1');
 
-    function AddItemToTable(urrun, addet, fiyyat, allici, uccret, tarrih) {
+    function AddItemToTable(urrun,addet,fiyyat,allici,uccret,tarrih){
 
         let trow = document.createElement('tr');
         let td1 = document.createElement('td');
@@ -90,14 +91,15 @@
         let td6 = document.createElement('td');
         let td7 = document.createElement('td');
 
-        idd++;
-        td1.innerHTML = idd;
-        td2.innerHTML = tarrih;
-        td3.innerHTML = urrun;
-        td4.innerHTML = addet;
-        td5.innerHTML = fiyyat + "₺";
-        td6.innerHTML = allici;
-        td7.innerHTML = addet * fiyyat + "₺";
+        if (urun != "" && ID != "" && tarih != "" && adet != "" && fiyat != "" && alici != "") {
+            td1.innerHTML = ++idd;
+            td2.innerHTML = tarrih;
+            td3.innerHTML = urrun;
+            td4.innerHTML = addet;
+            td5.innerHTML = fiyyat + "₺";
+            td6.innerHTML = allici;
+            td7.innerHTML = addet * fiyyat + "₺";
+        }
 
         trow.appendChild(td1);
         trow.appendChild(td2);
@@ -110,10 +112,9 @@
         tbody.appendChild(trow);
     }
 
-    function AddAllItemsToTable(TheStudent) {
-        idd = 0;
-        tbody.innerHTML = "";
-
+    function AddAllItemsToTable(TheStudent){
+        idd=0;
+        tbody.innerHTML="";
         TheStudent.forEach(element => {
 
             AddItemToTable(element.Urun, element.Adet, element.Fiyat, element.Alici, element.Ucret, element.Tarih);
@@ -121,8 +122,7 @@
         });
     }
 
-    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
     const firebaseConfig = {
         apiKey: "AIzaSyC2W0ZQNDQbcJrhi9jkOQC4h-ZqAKn1hWc",
         authDomain: "muhasebe-8abea.firebaseapp.com",
@@ -141,13 +141,13 @@
 
     const db = getDatabase();
 
-    function GetAllDataOnce() {
+    function GetAllDataOnce(){
         const dbRef = ref(db);
 
-        get(child(dbRef, "Kasa"))
-            .then((snapshot) => {
+        get(child(dbRef, "Kasa" ))
+            .then((snapshot)=>{
 
-                var students = [];
+                var students =[];
 
                 snapshot.forEach(childSnapshot => {
                     students.push(childSnapshot.val());
@@ -158,14 +158,14 @@
             });
     }
 
-    window.onload = GetAllDataOnce;
+    window.onload=GetAllDataOnce;
 
 </script>
 
 
 <script type="module">
 
-    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 
 
     const firebaseConfig = {
@@ -180,23 +180,28 @@
 
     const app = initializeApp(firebaseConfig);
 
-    import {getDatabase, ref, set}
+    import {getDatabase, ref, get, set, child, update, remove}
         from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
 
-    const db = getDatabase
+    const db = getDatabase();
 
-    var ID1 = document.getElementById("ID");
-    var Tarih1 = document.getElementById("tarih");
-    var Urun1 = document.getElementById("urun");
-    var Adet1 = document.getElementById("adet");
-    var Fiyat1 = document.getElementById("fiyat");
-    var Alici1 = document.getElementById("alici");
+    var ID1=document.getElementById("ID");
+    var Tarih1=document.getElementById("tarih");
+    var Urun1=document.getElementById("urun");
+    var Adet1=document.getElementById("adet");
+    var Fiyat1=document.getElementById("fiyat");
+    var Alici1=document.getElementById("alici");
+
+
 
 
     var insBtn = document.getElementById("save");
+    var selBtn = document.getElementById("SelBtn");
+    var upBtn = document.getElementById("UpBtn");
+    var delBtn = document.getElementById("del");
 
-    function InsertData() {
-        set(ref(db, "Kasa/" + ID1.value), {
+    function InsertData(){
+        set(ref(db,"Kasa/"+ID1.value),{
 
             ID: ID1.value,
             Tarih: Tarih1.value,
@@ -207,20 +212,34 @@
 
 
         })
-            .then(() => {
+            .then(()=>{
                 alert("successfully");
             })
-            .catch((error) => {
-                alert("alert" + error);
+            .catch((error)=>{
+                alert("alert"+error);
             });
     }
 
-    insBtn.addEventListener('click', InsertData);
+    insBtn.addEventListener('click',InsertData);
+
+    function DeleteData(){
+        remove(ref(db, "Kasa/"+ID1.value))
+            .then(()=>{
+                alert("deleted");
+            })
+            .catch((error)=>{
+
+                alert("error"+error);
+            });
+    }
+
+    delBtn.addEventListener('click',DeleteData);
 
 </script>
 
 
 </body>
+
 
 
 </html>
