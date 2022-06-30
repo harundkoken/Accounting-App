@@ -10,7 +10,14 @@ body {
     font-size: 14px;
 }
 
-h1 {
+h1{
+    font-family: "American Typewriter";
+    font-size: 5vw;
+    margin-bottom: 40px;
+    margin-top: 35px;
+    text-align: center;
+}
+h2{
     font-family: "American Typewriter";
     font-size: 5vw;
     margin-bottom: 40px;

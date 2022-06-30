@@ -27,43 +27,22 @@
   </head>
   <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <ul class="navbar-nav">
-
-        <li class="nav-item dropdown">
-          <a
-                  class="nav-link dropdown-toggle d-flex align-items-center"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-mdb-toggle="dropdown"
-                  aria-expanded="false"
-          >
-            <img
-                    class="rounded-circle"
-                    height="22"
-                    loading="lazy"
-            />
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a class="dropdown-item" href="/urunler.html">Sipariş Oluştur</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/musteri.html">Müşteri Oluştur</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Hesap Özeti</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Çıkış Yap</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+              data-mdb-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </nav>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-light shadow-3 p-4">
+      <button class="btn btn-link btn-block border-bottom m-0">Link 1</button>
+      <button class="btn btn-link btn-block border-bottom m-0">Link 2</button>
+      <button class="btn btn-link btn-block m-0">Link 3</button>
+    </div>
+  </div>
 
     <script type="text/javascript" src="js/mdb.min.js"></script>
 
@@ -71,6 +50,7 @@
 
   <div style="margin-top: 7px" class="w3-container w3-blue w3-card">
     <h1>ARI PLASTİK MUHASEBE</h1>
+    <h2>-Kalite Muz-</h2>
   </div>
 
   <div class="container-sm" style="text-align: center">
@@ -83,17 +63,6 @@
           <option value="Çilek">Çilek</option>
           <option value="Mini Çilek">Mini Çilek</option>
         </select>
-      <p class="x4">
-        <label>Alıcı: </label>
-      <select id="alici">
-        <option value="Harun">Harun</option>
-        <option value="Mehmet">Mehmet</option>
-        <option value="Ahmet">Ahmet</option>
-        <option value="İrfan">İrfan</option>
-        <option value="Ferdi">Ferdi</option>
-        <option value="Hakan">Hakan</option>
-        <option value="Can">Can</option>
-      </select>
       <p class="x7">
         <label style="padding-right: 15px">ID: </label>
         <input class="w3-input" id="ID" type="text">
@@ -114,9 +83,6 @@
     </form>
     <br>
 
-
-
-
     <table class="table table-dark" style="text-align: center">
       <thead>
 
@@ -125,7 +91,6 @@
       <th>Ürün</th>
       <th>Adet</th>
       <th>Fiyat</th>
-      <th>Alici</th>
       <th>Ücret</th>
 
 
@@ -149,7 +114,6 @@
       let td3 = document.createElement('td');
       let td4 = document.createElement('td');
       let td5 = document.createElement('td');
-      let td6 = document.createElement('td');
       let td7 = document.createElement('td');
 
 
@@ -158,7 +122,6 @@
         td3.innerHTML = urrun;
         td4.innerHTML = addet;
         td5.innerHTML = fiyyat + "₺";
-        td6.innerHTML = allici;
         td7.innerHTML = addet * fiyyat + "₺";
 
 
@@ -167,7 +130,6 @@
       trow.appendChild(td3);
       trow.appendChild(td4);
       trow.appendChild(td5);
-      trow.appendChild(td6);
       trow.appendChild(td7);
 
       tbody.appendChild(trow);
@@ -178,7 +140,7 @@
       tbody.innerHTML="";
       TheStudent.forEach(element => {
 
-        AddItemToTable(element.Urun, element.Adet, element.Fiyat, element.Alici, element.Ucret, element.Tarih);
+        AddItemToTable(element.Urun, element.Adet, element.Fiyat, element.Ucret, element.Tarih);
 
       });
     }
@@ -251,7 +213,7 @@
     var Urun1=document.getElementById("urun");
     var Adet1=document.getElementById("adet");
     var Fiyat1=document.getElementById("fiyat");
-    var Alici1=document.getElementById("alici");
+
 
 
 
@@ -268,7 +230,6 @@
         Urun: Urun1.value,
         Adet: Adet1.value,
         Fiyat: Fiyat1.value,
-        Alici: Alici1.value,
 
 
       })
