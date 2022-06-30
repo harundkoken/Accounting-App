@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
     <title>Muhasebe</title>
-    <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -12,43 +13,93 @@
 
 
 
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
 
-<body>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
 
-<div class="w3-container w3-blue w3-card">
+    <link rel="stylesheet" href="css/mdb.min.css" />
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+
+        <li class="nav-item dropdown">
+          <a
+                  class="nav-link dropdown-toggle d-flex align-items-center"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+          >
+            <img
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+                    class="rounded-circle"
+                    height="22"
+                    alt="Portrait of a Woman"
+                    loading="lazy"
+            />
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="/urunler.html">Sipariş Oluştur</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Müşteri Oluştur</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Çıkış Yap</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <script type="text/javascript"></script>
+
+  <div class="w3-container w3-blue w3-card">
     <h1>ARI PLASTİK MUHASEBE</h1>
-</div>
+  </div>
 
-<div class="container-sm" style="text-align: center">
+  <div class="container-sm" style="text-align: center">
 
     <form class="form">
-        <p class="x1">
-            <label>Ürün: </label>
-            <select id="urun">
-                <option value="Muz">Muz</option>
-                <option value="Çilek">Çilek</option>
-                <option value="Mini Çilek">Mini Çilek</option>
-            </select>
-        <p class="x7">
-            <label style="padding-right: 15px">ID: </label>
-            <input class="w3-input" id="ID" type="text">
-        </p>
-        <p class="x6">
-            <label>Tarih: </label>
-            <input class="w3-input" id="tarih" type="text" placeholder="dd/mm/yyyy" required>
-        </p>
-        <p class="x2">
-            <label>Adet: </label>
-            <input class="w3-input" type="text" id="adet"></p>
-        <p class="x3">
-            <label>Fiyat: </label>
-            <input class="w3-input" type="text" id="fiyat"></p>
-        <p class="x4">
-            <label>Alıcı: </label>
-            <input class="w3-input" type="text" id="alici"></p>
-        <p class="x5">
-            <button type="button" class="btn btn-primary" id="save">Kaydet</button></p>
+      <p class="x1">
+        <label>Ürün: </label>
+        <select id="urun">
+          <option value="Muz">Muz</option>
+          <option value="Çilek">Çilek</option>
+          <option value="Mini Çilek">Mini Çilek</option>
+        </select>
+      <p class="x7">
+        <label style="padding-right: 15px">ID: </label>
+        <input class="w3-input" id="ID" type="text">
+      </p>
+      <p class="x6">
+        <label>Tarih: </label>
+        <input class="w3-input" id="tarih" type="text" placeholder="dd/mm/yyyy" required>
+      </p>
+      <p class="x2">
+        <label>Adet: </label>
+        <input class="w3-input" type="text" id="adet"></p>
+      <p class="x3">
+        <label>Fiyat: </label>
+        <input class="w3-input" type="text" id="fiyat"></p>
+      <p class="x4">
+        <label>Alıcı: </label>
+        <input class="w3-input" type="text" id="alici"></p>
+      <p class="x5">
+        <button type="button" class="btn btn-primary" id="save">Kaydet</button></p>
 
     </form>
     <br>
@@ -57,131 +108,131 @@
 
 
     <table class="table table-dark" style="text-align: center">
-        <thead>
+      <thead>
 
-        <th>ID</th>
-        <th>Tarih</th>
-        <th>Ürün</th>
-        <th>Adet</th>
-        <th>Fiyat</th>
-        <th>Alici</th>
-        <th>Ücret</th>
+      <th>ID</th>
+      <th>Tarih</th>
+      <th>Ürün</th>
+      <th>Adet</th>
+      <th>Fiyat</th>
+      <th>Alici</th>
+      <th>Ücret</th>
 
 
-        </thead>
+      </thead>
 
-        <tbody id="tbody1"></tbody>
+      <tbody id="tbody1"></tbody>
 
     </table>
-</div>
+  </div>
 
-<script type="module">
+  <script type="module">
 
     var idd = 0;
     var tbody = document.getElementById('tbody1');
 
     function AddItemToTable(urrun,addet,fiyyat,allici,uccret,tarrih){
 
-        let trow = document.createElement('tr');
-        let td1 = document.createElement('td');
-        let td2 = document.createElement('td');
-        let td3 = document.createElement('td');
-        let td4 = document.createElement('td');
-        let td5 = document.createElement('td');
-        let td6 = document.createElement('td');
-        let td7 = document.createElement('td');
+      let trow = document.createElement('tr');
+      let td1 = document.createElement('td');
+      let td2 = document.createElement('td');
+      let td3 = document.createElement('td');
+      let td4 = document.createElement('td');
+      let td5 = document.createElement('td');
+      let td6 = document.createElement('td');
+      let td7 = document.createElement('td');
 
-        if (urun != "" && ID != "" && tarih != "" && adet != "" && fiyat != "" && alici != "") {
-            td1.innerHTML = ++idd;
-            td2.innerHTML = tarrih;
-            td3.innerHTML = urrun;
-            td4.innerHTML = addet;
-            td5.innerHTML = fiyyat + "₺";
-            td6.innerHTML = allici;
-            td7.innerHTML = addet * fiyyat + "₺";
-        }
+      if (urun != "" && ID != "" && tarih != "" && adet != "" && fiyat != "" && alici != "") {
+        td1.innerHTML = ++idd;
+        td2.innerHTML = tarrih;
+        td3.innerHTML = urrun;
+        td4.innerHTML = addet;
+        td5.innerHTML = fiyyat + "₺";
+        td6.innerHTML = allici;
+        td7.innerHTML = addet * fiyyat + "₺";
+      }
 
-        trow.appendChild(td1);
-        trow.appendChild(td2);
-        trow.appendChild(td3);
-        trow.appendChild(td4);
-        trow.appendChild(td5);
-        trow.appendChild(td6);
-        trow.appendChild(td7);
+      trow.appendChild(td1);
+      trow.appendChild(td2);
+      trow.appendChild(td3);
+      trow.appendChild(td4);
+      trow.appendChild(td5);
+      trow.appendChild(td6);
+      trow.appendChild(td7);
 
-        tbody.appendChild(trow);
+      tbody.appendChild(trow);
     }
 
     function AddAllItemsToTable(TheStudent){
-        idd=0;
-        tbody.innerHTML="";
-        TheStudent.forEach(element => {
+      idd=0;
+      tbody.innerHTML="";
+      TheStudent.forEach(element => {
 
-            AddItemToTable(element.Urun, element.Adet, element.Fiyat, element.Alici, element.Ucret, element.Tarih);
+        AddItemToTable(element.Urun, element.Adet, element.Fiyat, element.Alici, element.Ucret, element.Tarih);
 
-        });
+      });
     }
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
     const firebaseConfig = {
-        apiKey: "AIzaSyC2W0ZQNDQbcJrhi9jkOQC4h-ZqAKn1hWc",
-        authDomain: "muhasebe-8abea.firebaseapp.com",
-        databaseURL: "https://muhasebe-8abea-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "muhasebe-8abea",
-        storageBucket: "muhasebe-8abea.appspot.com",
-        messagingSenderId: "321395305665",
-        appId: "1:321395305665:web:7d5d494000646bea52f840"
+      apiKey: "AIzaSyC2W0ZQNDQbcJrhi9jkOQC4h-ZqAKn1hWc",
+      authDomain: "muhasebe-8abea.firebaseapp.com",
+      databaseURL: "https://muhasebe-8abea-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "muhasebe-8abea",
+      storageBucket: "muhasebe-8abea.appspot.com",
+      messagingSenderId: "321395305665",
+      appId: "1:321395305665:web:7d5d494000646bea52f840"
     };
 
     const app = initializeApp(firebaseConfig);
 
 
     import {getDatabase, ref, child, onValue, get}
-        from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+      from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
 
     const db = getDatabase();
 
     function GetAllDataOnce(){
-        const dbRef = ref(db);
+      const dbRef = ref(db);
 
-        get(child(dbRef, "Kasa" ))
-            .then((snapshot)=>{
+      get(child(dbRef, "Kasa" ))
+              .then((snapshot)=>{
 
                 var students =[];
 
                 snapshot.forEach(childSnapshot => {
-                    students.push(childSnapshot.val());
+                  students.push(childSnapshot.val());
                 });
 
                 AddAllItemsToTable(students);
 
-            });
+              });
     }
 
     window.onload=GetAllDataOnce;
 
-</script>
+  </script>
 
 
-<script type="module">
+  <script type="module">
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 
 
     const firebaseConfig = {
-        apiKey: "AIzaSyC2W0ZQNDQbcJrhi9jkOQC4h-ZqAKn1hWc",
-        authDomain: "muhasebe-8abea.firebaseapp.com",
-        databaseURL: "https://muhasebe-8abea-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "muhasebe-8abea",
-        storageBucket: "muhasebe-8abea.appspot.com",
-        messagingSenderId: "321395305665",
-        appId: "1:321395305665:web:7d5d494000646bea52f840"
+      apiKey: "AIzaSyC2W0ZQNDQbcJrhi9jkOQC4h-ZqAKn1hWc",
+      authDomain: "muhasebe-8abea.firebaseapp.com",
+      databaseURL: "https://muhasebe-8abea-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "muhasebe-8abea",
+      storageBucket: "muhasebe-8abea.appspot.com",
+      messagingSenderId: "321395305665",
+      appId: "1:321395305665:web:7d5d494000646bea52f840"
     };
 
     const app = initializeApp(firebaseConfig);
 
     import {getDatabase, ref, get, set, child, update, remove}
-        from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+      from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
 
     const db = getDatabase();
 
@@ -201,45 +252,40 @@
     var delBtn = document.getElementById("del");
 
     function InsertData(){
-        set(ref(db,"Kasa/"+ID1.value),{
+      set(ref(db,"Kasa/"+ID1.value),{
 
-            ID: ID1.value,
-            Tarih: Tarih1.value,
-            Urun: Urun1.value,
-            Adet: Adet1.value,
-            Fiyat: Fiyat1.value,
-            Alici: Alici1.value,
+        ID: ID1.value,
+        Tarih: Tarih1.value,
+        Urun: Urun1.value,
+        Adet: Adet1.value,
+        Fiyat: Fiyat1.value,
+        Alici: Alici1.value,
 
 
-        })
-            .then(()=>{
+      })
+              .then(()=>{
                 alert("successfully");
-            })
-            .catch((error)=>{
+              })
+              .catch((error)=>{
                 alert("alert"+error);
-            });
+              });
     }
 
     insBtn.addEventListener('click',InsertData);
 
     function DeleteData(){
-        remove(ref(db, "Kasa/"+ID1.value))
-            .then(()=>{
+      remove(ref(db, "Kasa/"+ID1.value))
+              .then(()=>{
                 alert("deleted");
-            })
-            .catch((error)=>{
+              })
+              .catch((error)=>{
 
                 alert("error"+error);
-            });
+              });
     }
 
     delBtn.addEventListener('click',DeleteData);
 
-</script>
-
-
-</body>
-
-
-
+  </script>
+  </body>
 </html>
