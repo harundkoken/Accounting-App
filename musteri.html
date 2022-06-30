@@ -70,13 +70,30 @@
 
 <h1>Müşteri Oluştur</h1>
 <hr size="4px">
-<form>
+
+<form action="urunler.html">
     <div class="form-group">
         <label for="exampleInputEmail1">Adını Gir:</label>
         <input style="width: 500px" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Müşteri adını gir">
     </div>
-    <button type="submit" class="btn btn-primary">Oluştur</button>
+    <button type="button" onclick="myFunction()" class="btn btn-primary">Oluştur</button>
+
+
 </form>
+
+
+<select id="urun">
+    <option>1</option>
+</select>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("urun");
+        var option = document.createElement("option");
+        option.text = document.getElementById("exampleInputEmail1").value;
+        x.add(option);
+    }
+</script>
 
 </body>
 </html>
