@@ -1,14 +1,25 @@
-h1{
+*{
     font-family: "American Typewriter";
+}
+
+h1{
     text-align: center;
     margin-top: 25px;
 }
 
 button{
-    margin-top: 20px;
+    margin-left: 30px;
 }
 
 label{
     margin-bottom: 10px;
 }
 
+input{
+    justify-content: center;
+
+}
+
+.form-group{
+    margin: 30px;
+}
