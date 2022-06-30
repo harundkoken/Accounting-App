@@ -57,7 +57,7 @@
               <a class="dropdown-item" href="#">Hesap Özeti</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Çıkış Yap</a>
+              <a class="dropdown-item" href="/index.html">Çıkış Yap</a>
             </li>
           </ul>
         </li>
@@ -144,7 +144,7 @@
       let td6 = document.createElement('td');
       let td7 = document.createElement('td');
 
-      if (urun != "" && ID != "" && tarih != "" && adet != "" && fiyat != "" && alici != "") {
+
         td1.innerHTML = ++idd;
         td2.innerHTML = tarrih;
         td3.innerHTML = urrun;
@@ -152,7 +152,7 @@
         td5.innerHTML = fiyyat + "₺";
         td6.innerHTML = allici;
         td7.innerHTML = addet * fiyyat + "₺";
-      }
+
 
       trow.appendChild(td1);
       trow.appendChild(td2);
@@ -189,7 +189,7 @@
     const app = initializeApp(firebaseConfig);
 
 
-    import {getDatabase, ref, child, onValue, get}
+    import {getDatabase, ref, child, get}
       from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
 
     const db = getDatabase();
@@ -233,7 +233,7 @@
 
     const app = initializeApp(firebaseConfig);
 
-    import {getDatabase, ref, get, set, child, update, remove}
+    import {getDatabase, ref, set}
       from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
 
     const db = getDatabase();
@@ -249,9 +249,8 @@
 
 
     var insBtn = document.getElementById("save");
-    var selBtn = document.getElementById("SelBtn");
-    var upBtn = document.getElementById("UpBtn");
-    var delBtn = document.getElementById("del");
+
+
 
     function InsertData(){
       set(ref(db,"Kasa/"+ID1.value),{
@@ -273,20 +272,10 @@
               });
     }
 
+
+
+
     insBtn.addEventListener('click',InsertData);
-
-    function DeleteData(){
-      remove(ref(db, "Kasa/"+ID1.value))
-              .then(()=>{
-                alert("deleted");
-              })
-              .catch((error)=>{
-
-                alert("error"+error);
-              });
-    }
-
-    delBtn.addEventListener('click',DeleteData);
 
   </script>
   </body>
