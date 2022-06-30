@@ -57,7 +57,7 @@
               <a class="dropdown-item" href="#">Hesap Özeti</a>
             </li>
             <li>
-              <a class="dropdown-item" href="/index.html">Çıkış Yap</a>
+              <a class="dropdown-item" href="#">Çıkış Yap</a>
             </li>
           </ul>
         </li>
@@ -83,6 +83,17 @@
           <option value="Çilek">Çilek</option>
           <option value="Mini Çilek">Mini Çilek</option>
         </select>
+      <p class="x4">
+        <label>Alıcı: </label>
+      <select id="alici">
+        <option value="Muz">Harun</option>
+        <option value="Çilek">Mehmet</option>
+        <option value="Mini Çilek">Ahmet</option>
+        <option value="Muz">İrfan</option>
+        <option value="Muz">Ferdi</option>
+        <option value="Muz">Hakan</option>
+        <option value="Muz">Can</option>
+      </select>
       <p class="x7">
         <label style="padding-right: 15px">ID: </label>
         <input class="w3-input" id="ID" type="text">
@@ -97,9 +108,6 @@
       <p class="x3">
         <label>Fiyat: </label>
         <input class="w3-input" type="text" id="fiyat"></p>
-      <p class="x4">
-        <label>Alıcı: </label>
-        <input class="w3-input" type="text" id="alici"></p>
       <p class="x5">
         <button type="button" class="btn btn-primary" id="save">Kaydet</button></p>
 
@@ -115,9 +123,9 @@
       <th>ID</th>
       <th>Tarih</th>
       <th>Ürün</th>
+      <th>Alici</th>
       <th>Adet</th>
       <th>Fiyat</th>
-      <th>Alici</th>
       <th>Ücret</th>
 
 
@@ -133,33 +141,33 @@
     var idd = 0;
     var tbody = document.getElementById('tbody1');
 
-    function AddItemToTable(urrun,addet,fiyyat,allici,uccret,tarrih){
+    function AddItemToTable(urrun,allici,addet,fiyyat,uccret,tarrih){
 
       let trow = document.createElement('tr');
       let td1 = document.createElement('td');
       let td2 = document.createElement('td');
       let td3 = document.createElement('td');
+      let td6 = document.createElement('td');
       let td4 = document.createElement('td');
       let td5 = document.createElement('td');
-      let td6 = document.createElement('td');
       let td7 = document.createElement('td');
 
 
         td1.innerHTML = ++idd;
         td2.innerHTML = tarrih;
         td3.innerHTML = urrun;
+        td6.innerHTML = allici;
         td4.innerHTML = addet;
         td5.innerHTML = fiyyat + "₺";
-        td6.innerHTML = allici;
         td7.innerHTML = addet * fiyyat + "₺";
 
 
       trow.appendChild(td1);
       trow.appendChild(td2);
       trow.appendChild(td3);
+      trow.appendChild(td6);
       trow.appendChild(td4);
       trow.appendChild(td5);
-      trow.appendChild(td6);
       trow.appendChild(td7);
 
       tbody.appendChild(trow);
@@ -170,7 +178,7 @@
       tbody.innerHTML="";
       TheStudent.forEach(element => {
 
-        AddItemToTable(element.Urun, element.Adet, element.Fiyat, element.Alici, element.Ucret, element.Tarih);
+        AddItemToTable(element.Tarih,element.Urun, element.Alici, element.Fiyat, element.Adet, element.Ucret);
 
       });
     }
@@ -241,9 +249,10 @@
     var ID1=document.getElementById("ID");
     var Tarih1=document.getElementById("tarih");
     var Urun1=document.getElementById("urun");
+    var Alici1=document.getElementById("alici");
     var Adet1=document.getElementById("adet");
     var Fiyat1=document.getElementById("fiyat");
-    var Alici1=document.getElementById("alici");
+
 
 
 
@@ -258,9 +267,10 @@
         ID: ID1.value,
         Tarih: Tarih1.value,
         Urun: Urun1.value,
+        Alici: Alici1.value,
         Adet: Adet1.value,
         Fiyat: Fiyat1.value,
-        Alici: Alici1.value,
+
 
 
       })
