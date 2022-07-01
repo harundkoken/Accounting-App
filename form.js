@@ -27,7 +27,7 @@ document.getElementById("login-btn").addEventListener('click', function () {
         .then((userCredential) => {
             const user = userCredential.user;
 
-            window.location.href="urunler.html";
+            window.location.href="burger.html";
         })
         .catch((error) => {
             const errorCode = error.code;

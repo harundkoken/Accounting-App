@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <title>Muhasebe</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+
+  <div style="margin-top: 7px" class="w3-container w3-blue w3-card">
+    <h1>ARI PLASTİK MUHASEBE</h1>
+    <h2>Müşteri-1</h2>
+  </div>
+
+  <div class="container-sm" style="text-align: center">
+
+    <form class="form">
+      <p class="x1">
+        <label>Ürün: </label>
+        <select id="urun">
+          <option value="Muz">Muz</option>
+          <option value="Çilek">Çilek</option>
+          <option value="Mini Çilek">Mini Çilek</option>
+        </select>
+      <p class="x7">
+        <label style="padding-right: 15px">ID: </label>
+        <input class="w3-input" id="ID" type="text">
+      </p>
+      <p class="x6">
+        <label>Tarih: </label>
+        <input class="w3-input" id="tarih" type="text" placeholder="dd/mm/yyyy" required>
+      </p>
+      <p class="x2">
+        <label>Adet: </label>
+        <input class="w3-input" type="text" id="adet"></p>
+      <p class="x3">
+        <label>Fiyat: </label>
+        <input class="w3-input" type="text" id="fiyat"></p>
+      <p class="x5">
+        <button type="button" class="btn btn-primary" id="save">Kaydet</button></p>
+
+    </form>
+    <br>
+
+    <table class="table table-sm table-dark" style="text-align: center">
+      <thead>
+
+      <th>ID</th>
+      <th>Tarih</th>
+      <th>Ürün</th>
+      <th>Adet</th>
+      <th>Fiyat</th>
+      <th>Ücret</th>
+
+
+      </thead>
+
+      <tbody id="tbody1"></tbody>
+
+    </table>
+  </div>
+
+  <script type="module">
+
+    var idd = 0;
+    var tbody = document.getElementById('tbody1');
+
+    function AddItemToTable(tarrih,urrun,addet,fiyyat,uccret){
+
+      let trow = document.createElement('tr');
+
+      let td1 = document.createElement('td');
+      let td2 = document.createElement('td');
+      let td3 = document.createElement('td');
+      let td4 = document.createElement('td');
+      let td5 = document.createElement('td');
+      let td7 = document.createElement('td');
+
+
+        td1.innerHTML = ++idd;
+        td2.innerHTML = tarrih;
+        td3.innerHTML = urrun;
+        td4.innerHTML = addet;
+        td5.innerHTML = fiyyat + "₺";
+        td7.innerHTML = addet * fiyyat + "₺";
+
+
+      trow.appendChild(td1);
+      trow.appendChild(td2);
+      trow.appendChild(td3);
+      trow.appendChild(td4);
+      trow.appendChild(td5);
+      trow.appendChild(td7);
+
+      tbody.appendChild(trow);
+    }
+
+    function AddAllItemsToTable(TheStudent){
+      idd=0;
+      tbody.innerHTML="";
+      TheStudent.forEach(element => {
+
+        AddItemToTable(element.Tarih, element.Urun, element.Adet, element.Fiyat, element.Ucret);
+
+      });
+    }
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyC2W0ZQNDQbcJrhi9jkOQC4h-ZqAKn1hWc",
+      authDomain: "muhasebe-8abea.firebaseapp.com",
+      databaseURL: "https://muhasebe-8abea-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "muhasebe-8abea",
+      storageBucket: "muhasebe-8abea.appspot.com",
+      messagingSenderId: "321395305665",
+      appId: "1:321395305665:web:7d5d494000646bea52f840"
+    };
+
+    const app = initializeApp(firebaseConfig);
+
+
+    import {getDatabase, ref, child, get}
+      from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+    const db = getDatabase();
+
+    function GetAllDataOnce(){
+      const dbRef = ref(db);
+
+      get(child(dbRef, "Kasa/Müşteri-1" ))
+              .then((snapshot)=>{
+
+                var students =[];
+
+                snapshot.forEach(childSnapshot => {
+                  students.push(childSnapshot.val());
+                });
+
+                AddAllItemsToTable(students);
+
+              });
+    }
+
+    window.onload=GetAllDataOnce;
+
+  </script>
+
+
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC2W0ZQNDQbcJrhi9jkOQC4h-ZqAKn1hWc",
+      authDomain: "muhasebe-8abea.firebaseapp.com",
+      databaseURL: "https://muhasebe-8abea-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "muhasebe-8abea",
+      storageBucket: "muhasebe-8abea.appspot.com",
+      messagingSenderId: "321395305665",
+      appId: "1:321395305665:web:7d5d494000646bea52f840"
+    };
+
+    const app = initializeApp(firebaseConfig);
+
+    import {getDatabase, ref, set}
+      from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+    const db = getDatabase();
+
+    var ID1=document.getElementById("ID");
+    var Tarih1=document.getElementById("tarih");
+    var Urun1=document.getElementById("urun");
+    var Adet1=document.getElementById("adet");
+    var Fiyat1=document.getElementById("fiyat");
+
+
+
+
+
+    var insBtn = document.getElementById("save");
+
+
+
+    function InsertData(){
+      set(ref(db,"Kasa/Müşteri-1/"+ID1.value),{
+
+        ID: ID1.value,
+        Tarih: Tarih1.value,
+        Urun: Urun1.value,
+        Adet: Adet1.value,
+        Fiyat: Fiyat1.value,
+
+      })
+              .then(()=>{
+                alert("successfully");
+              })
+              .catch((error)=>{
+                alert("alert"+error);
+              });
+    }
+
+
+
+
+    insBtn.addEventListener('click',InsertData);
+
+  </script>
+  </body>
+</html>
