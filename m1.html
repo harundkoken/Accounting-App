@@ -16,7 +16,7 @@
 
 
   <div style="margin-top: 7px" class="w3-container w3-blue w3-card">
-    <h1>ARI PLASTİK MUHASEBE</h1>
+    <h1 class="bg-dark p-2 bg-gradient text-white">ARI PLASTİK MUHASEBE</h1>
     <h2>Müşteri-1</h2>
   </div>
 
@@ -103,10 +103,10 @@
       tbody.appendChild(trow);
     }
 
-    function AddAllItemsToTable(TheStudent){
+    function AddAllItemsToTable(Kasa){
       idd=0;
       tbody.innerHTML="";
-      TheStudent.forEach(element => {
+      Kasa.forEach(element => {
 
         AddItemToTable(element.Tarih, element.Urun, element.Adet, element.Fiyat, element.Ucret);
 
@@ -138,13 +138,13 @@
       get(child(dbRef, "Kasa/Müşteri-1" ))
               .then((snapshot)=>{
 
-                var students =[];
+                var kasalar =[];
 
                 snapshot.forEach(childSnapshot => {
-                  students.push(childSnapshot.val());
+                  kasalar.push(childSnapshot.val());
                 });
 
-                AddAllItemsToTable(students);
+                AddAllItemsToTable(kasalar);
 
               });
     }
