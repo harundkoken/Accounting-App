@@ -36,7 +36,7 @@
       </p>
       <p class="x6">
         <label>Tarih: </label>
-        <input class="w3-input" id="tarih" type="text" placeholder="dd/mm/yyyy" required>
+        <input class="w3-input" id="tarih" type="datetime-local" required>
       </p>
       <p class="x2">
         <label>Adet: </label>
@@ -201,10 +201,10 @@
 
       })
               .then(()=>{
-                alert("successfully");
+                alert("Başarılı");
               })
               .catch((error)=>{
-                alert("alert"+error);
+                alert("Hata!!"+error);
               });
     }
 
